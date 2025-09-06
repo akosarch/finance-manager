@@ -1,0 +1,681 @@
+{
+  "active": false,
+  "connections": {
+    "Globals": {
+      "main": [
+        [
+          {
+            "node": "Get credentials list from GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Split remote",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split local",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Globals",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get stored credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compare Datasets": {
+      "main": [
+        [
+          {
+            "node": "Delete credential",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return skipped",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete credential2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create credential",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create credential": {
+      "main": [
+        [
+          {
+            "node": "Return added",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete credential": {
+      "main": [
+        [
+          {
+            "node": "Return removed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete credential2": {
+      "main": [
+        [
+          {
+            "node": "Create credential1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create credential1": {
+      "main": [
+        [
+          {
+            "node": "Return updated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON formatting": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format external": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get stored credentials": {
+      "main": [
+        [
+          {
+            "node": "JSON formatting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get credentials list from GitHub": {
+      "main": [
+        [
+          {
+            "node": "Get file content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split local": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split remote": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get file content": {
+      "main": [
+        [
+          {
+            "node": "Format external",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-03T21:49:57.739Z",
+  "id": "qSJUxUjdIT62342t",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Restore credentials",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6cf546c5-5737-4dbd-851b-17d68e0a3780",
+              "name": "repo.owner",
+              "type": "string",
+              "value": "akosarch"
+            },
+            {
+              "id": "452efa28-2dc6-4ea3-a7a2-c35d100d0382",
+              "name": "repo.name",
+              "type": "string",
+              "value": "finance-manager"
+            },
+            {
+              "id": "81c4dc54-86bf-4432-a23f-22c7ea831e74",
+              "name": "repo.path",
+              "type": "string",
+              "value": "credentials"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f93379c7-29f6-4775-acb7-d12d3ad7a256",
+      "name": "Globals",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        32,
+        -176
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "## Subworkflow",
+        "height": 799,
+        "width": 1591,
+        "color": 6
+      },
+      "id": "0439835d-1e76-440d-833b-f7074b42fe3e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        32
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "9e1a0c2b-5fb1-4bf7-9511-ac2023fd07c0",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -192,
+        368
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {},
+      "id": "402b8355-8b52-4b32-ab30-058e30f71a70",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -192,
+        -272
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Main workflow loop",
+        "height": 435,
+        "width": 1589,
+        "color": 7
+      },
+      "id": "29ff10df-2210-4990-9703-49c4ef4e1587",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        -432
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "id",
+              "field2": "id"
+            },
+            {
+              "field1": "type",
+              "field2": "type"
+            }
+          ]
+        },
+        "resolve": "preferInput2",
+        "options": {
+          "skipFields": "createdAt, updatedAt"
+        }
+      },
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        256,
+        336
+      ],
+      "id": "82436338-9e89-4ac2-a9cc-997f24302034",
+      "name": "Compare Datasets"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1152,
+        -272
+      ],
+      "id": "42007ee7-0840-4217-b5fa-0d5afedf8d48",
+      "name": "Execute Workflow1",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "resource": "credential",
+        "operation": "delete",
+        "credentialId": "={{ $json.id }}",
+        "requestOptions": {}
+      },
+      "id": "658996b5-1e8e-4595-a920-cc48f9093c52",
+      "name": "Delete credential",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        480,
+        80
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "credential",
+        "name": "={{ $json.name }}",
+        "credentialTypeName": "={{ $json.type }}",
+        "data": "={{ JSON.stringify($json.data) }}",
+        "requestOptions": {}
+      },
+      "id": "ad8fecd1-9d23-43b8-889c-01339a924839",
+      "name": "Create credential",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        480,
+        656
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
+        "options": {}
+      },
+      "id": "89bc9485-83f3-4ad6-8ae3-7582848bfe6e",
+      "name": "Return skipped",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        480,
+        272
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"deleted\"\n  }\n}}\n",
+        "options": {}
+      },
+      "id": "293aa13e-4666-4402-a0e1-b2d5669afeb6",
+      "name": "Return removed",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        704,
+        80
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"created\"\n  }\n}}\n",
+        "options": {}
+      },
+      "id": "61a99e5d-14ea-4cdb-b382-c795d7d09eb3",
+      "name": "Return added",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        704,
+        656
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "resource": "credential",
+        "name": "={{ $('Compare Datasets').item.json.name }}",
+        "credentialTypeName": "={{ $('Compare Datasets').item.json.type }}",
+        "data": "={{ JSON.stringify($('Compare Datasets').item.json.data) }}",
+        "requestOptions": {}
+      },
+      "id": "606a8793-6a2d-46cd-b501-8a0d9a5d219f",
+      "name": "Create credential1",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        704,
+        464
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "credential",
+        "operation": "delete",
+        "credentialId": "={{ $json.id }}",
+        "requestOptions": {}
+      },
+      "id": "efbe59f0-2801-4a69-a665-848cbf6dfa24",
+      "name": "Delete credential2",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        480,
+        464
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
+        "options": {}
+      },
+      "id": "21f59542-e36f-4053-baac-5cad74e3f7f9",
+      "name": "Return updated",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        928,
+        464
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function to beautify JSON\nfunction beautifyJson(jsonString) {\n  try {\n    // Parse the JSON string\n    const jsonObject = JSON.parse(jsonString)\n\n    // Format the JSON with indentation\n    return jsonObject; // Return the parsed object directly\n  } catch (error) {\n    // Return the error message if JSON is invalid\n    return `Invalid JSON: ${error.message}`\n  }\n}\n\n// Retrieve the JSON object from the input data\nconst input = $input.all()[0].json\n\n// Extract the JSON string from the stdout field\nconst jsonString = input.stdout.match(/\\[{.*}\\]/s)\n\n// Check if a valid JSON string is found\nif (!jsonString) {\n  return {\n    json: {\n      error: \"No valid JSON string found in stdout.\"\n    }\n  }\n}\n\n// Beautify the JSON\nconst beautifiedJson = beautifyJson(jsonString[0])\n\n// Return the output\nreturn {\"local\": beautifiedJson}\n"
+      },
+      "id": "bf350779-47ac-4463-aa73-59f68303fe78",
+      "name": "JSON formatting",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        704,
+        -368
+      ],
+      "typeVersion": 2,
+      "executeOnce": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        928,
+        -272
+      ],
+      "id": "42daba36-64e4-4a57-bf03-2e0363ecaf7c",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.all()\nconst output = input.map(c => JSON.parse(c.json.data))\nreturn {\"remote\": output}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        -176
+      ],
+      "id": "12b2d4b6-c4c1-459c-826b-bb969b5a7b28",
+      "name": "Format external"
+    },
+    {
+      "parameters": {
+        "command": "=npx n8n export:credentials --all --decrypted"
+      },
+      "id": "d2af3b29-0fba-4995-9b0d-28be7f076513",
+      "name": "Get stored credentials",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        32,
+        -368
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $json.repo.owner }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $json.repo.name }}",
+          "mode": "name"
+        },
+        "filePath": "={{ $json.repo.path }}"
+      },
+      "id": "ffee51ad-09e6-4275-aa72-fe9fdae1e4f4",
+      "name": "Get credentials list from GitHub",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        256,
+        -176
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "webhookId": "ef0f0e82-5155-4039-99f7-55e58b3baba6",
+      "credentials": {
+        "githubApi": {
+          "id": "8vSmf8gleGKalCjT",
+          "name": "GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "local",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        32,
+        272
+      ],
+      "id": "b4096c32-6ba5-4744-bac3-91c7193a4f66",
+      "name": "Split local"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "remote",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        32,
+        464
+      ],
+      "id": "800d588b-04b4-4ac9-be85-a269682ea9c5",
+      "name": "Split remote"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.github.com/repos/akosarch/finance-manager/contents/{{ $json.path }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.raw+json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        -176
+      ],
+      "id": "1bdac12d-8eef-44a0-8d73-c31634fc795a",
+      "name": "Get file content"
+    }
+  ],
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-03T21:49:57.739Z",
+      "updatedAt": "2025-09-03T21:49:57.739Z",
+      "role": "workflow:owner",
+      "workflowId": "qSJUxUjdIT62342t",
+      "projectId": "BFkLzpzN26OoI8IT"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-06T12:03:38.311Z",
+  "versionId": "f20ecf49-ad35-43f2-b19d-913c9faea591"
+}
