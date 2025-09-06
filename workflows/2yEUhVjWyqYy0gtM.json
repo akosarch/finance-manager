@@ -1,0 +1,283 @@
+{
+  "active": false,
+  "connections": {
+    "Globals": {
+      "main": [
+        [
+          {
+            "node": "Get file content from GitHub1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert files to JSON": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get file content from GitHub": {
+      "main": [
+        [
+          {
+            "node": "Convert files to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Globals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get file content from GitHub1": {
+      "main": [
+        [
+          {
+            "node": "Get file content from GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Restore n8n Credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-04T13:20:14.284Z",
+  "id": "2yEUhVjWyqYy0gtM",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Restore credentials_backup",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e64dc58c-0b9e-4f49-8945-b518ae447f1d",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -208,
+        -208
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6cf546c5-5737-4dbd-851b-17d68e0a3780",
+              "name": "repo.owner",
+              "type": "string",
+              "value": "akosarch"
+            },
+            {
+              "id": "452efa28-2dc6-4ea3-a7a2-c35d100d0382",
+              "name": "repo.name",
+              "type": "string",
+              "value": "finance-manager"
+            },
+            {
+              "id": "81c4dc54-86bf-4432-a23f-22c7ea831e74",
+              "name": "repo.path",
+              "type": "string",
+              "value": "credentials"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b39d3a85-1960-4cce-97cc-44661db42acb",
+      "name": "Globals",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        16,
+        -208
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $('Globals').item.json.repo.owner }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $('Globals').item.json.repo.name }}",
+          "mode": "name"
+        },
+        "filePath": "={{ $json.path }}",
+        "additionalParameters": {}
+      },
+      "id": "fc20abd2-f34c-471f-b745-44a28a8940be",
+      "name": "Get file content from GitHub",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        464,
+        -208
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "webhookId": "96951523-5dd2-4036-8392-4bb718618671",
+      "credentials": {
+        "githubApi": {
+          "id": "8vSmf8gleGKalCjT",
+          "name": "GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "id": "952e73bf-51fb-4d6a-a940-162e6c5cd0ec",
+      "name": "Convert files to JSON",
+      "type": "n8n-nodes-base.extractFromFile",
+      "position": [
+        688,
+        -208
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "credential",
+        "name": "={{ $json.data.name }}",
+        "credentialTypeName": "={{ $json.data.type }}",
+        "data": "={{ JSON.stringify($json.data.data) }}",
+        "requestOptions": {}
+      },
+      "id": "9ba85a3c-6ff7-48d1-84d5-9eeff66084e7",
+      "name": "Restore n8n Credentials",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        1136,
+        -208
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $json.repo.owner }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $json.repo.name }}",
+          "mode": "name"
+        },
+        "filePath": "={{ $json.repo.path }}",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "id": "39d756e5-346b-4142-a0ea-345f118272a3",
+      "name": "Get file content from GitHub1",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        240,
+        -208
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "webhookId": "dd97ce5e-c20b-4795-9c4e-65d7b522f688",
+      "credentials": {
+        "githubApi": {
+          "id": "8vSmf8gleGKalCjT",
+          "name": "GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3b7d3f8f-cc7d-4055-bb5a-0cd33081a28a",
+              "leftValue": "={{ $json.data.type }}",
+              "rightValue": "redis",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        912,
+        -208
+      ],
+      "id": "4655c9b7-5ca7-4cee-837c-204f4ded462a",
+      "name": "Filter"
+    }
+  ],
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-04T13:20:14.284Z",
+      "updatedAt": "2025-09-04T13:20:14.284Z",
+      "role": "workflow:owner",
+      "workflowId": "2yEUhVjWyqYy0gtM",
+      "projectId": "BFkLzpzN26OoI8IT"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-06T11:56:01.759Z",
+  "versionId": "8eb1573b-cb65-44c1-aae6-449d884c9c45"
+}
