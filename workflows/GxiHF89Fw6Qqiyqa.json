@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Globals1",
+            "node": "Globals",
             "type": "main",
             "index": 0
           },
@@ -37,7 +37,7 @@
       "main": [
         [
           {
-            "node": "Delete credential",
+            "node": "Delete workflow",
             "type": "main",
             "index": 0
           }
@@ -51,36 +51,14 @@
         ],
         [
           {
-            "node": "Update credential",
+            "node": "Update workflow",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Create credential",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Delete credential": {
-      "main": [
-        [
-          {
-            "node": "Return removed",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Create credential": {
-      "main": [
-        [
-          {
-            "node": "Return added",
+            "node": "Create workflow",
             "type": "main",
             "index": 0
           }
@@ -91,7 +69,7 @@
       "main": [
         [
           {
-            "node": "Execute Workflow1",
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
@@ -142,17 +120,6 @@
         ]
       ]
     },
-    "Globals1": {
-      "main": [
-        [
-          {
-            "node": "Get workflows from GitHub",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get n8n workflows": {
       "main": [
         [
@@ -186,11 +153,44 @@
         ]
       ]
     },
-    "Update credential": {
+    "Delete workflow": {
+      "main": [
+        [
+          {
+            "node": "Return removed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update workflow": {
       "main": [
         [
           {
             "node": "Return updated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create workflow": {
+      "main": [
+        [
+          {
+            "node": "Return added",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Globals": {
+      "main": [
+        [
+          {
+            "node": "Get workflows from GitHub",
             "type": "main",
             "index": 0
           }
@@ -288,79 +288,6 @@
     },
     {
       "parameters": {
-        "workflowId": {
-          "__rl": true,
-          "value": "={{ $workflow.id }}",
-          "mode": "id"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": true
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1.2,
-      "position": [
-        1696,
-        240
-      ],
-      "id": "8dbb1d6b-d9bb-41cc-a6aa-ab2b0e3ca942",
-      "name": "Execute Workflow1",
-      "executeOnce": false
-    },
-    {
-      "parameters": {
-        "operation": "delete",
-        "workflowId": {
-          "__rl": true,
-          "value": "={{ $json.id }}",
-          "mode": "id"
-        },
-        "requestOptions": {}
-      },
-      "id": "c48006fb-b921-40a4-a950-867be9276285",
-      "name": "Delete credential",
-      "type": "n8n-nodes-base.n8n",
-      "position": [
-        1024,
-        592
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "n8nApi": {
-          "id": "xzK70YDN3zq9WWf1",
-          "name": "n8n"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "create",
-        "workflowObject": "={{ $json }}",
-        "requestOptions": {}
-      },
-      "id": "a26d0dea-1e2f-4636-b399-875f03525135",
-      "name": "Create credential",
-      "type": "n8n-nodes-base.n8n",
-      "position": [
-        1024,
-        1168
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "n8nApi": {
-          "id": "xzK70YDN3zq9WWf1",
-          "name": "n8n"
-        }
-      }
-    },
-    {
-      "parameters": {
         "mode": "raw",
         "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
         "options": {}
@@ -429,7 +356,7 @@
       ],
       "id": "361b00de-537c-4766-a2e8-fae3fde470ef",
       "name": "Merge",
-      "executeOnce": true
+      "executeOnce": false
     },
     {
       "parameters": {
@@ -474,7 +401,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.github.com/repos/{{ $('Globals1').item.json.repo.owner }}/{{ $('Globals1').item.json.repo.name }}/contents/{{ $json.path }}",
+        "url": "=https://api.github.com/repos/{{ $('Globals').item.json.repo.owner }}/{{ $('Globals').item.json.repo.name }}/contents/{{ $json.path }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -506,41 +433,6 @@
       ],
       "id": "1525ec66-9f44-4a09-901b-0eeaed8b10e9",
       "name": "Get file content"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "6cf546c5-5737-4dbd-851b-17d68e0a3780",
-              "name": "repo.owner",
-              "type": "string",
-              "value": "akosarch"
-            },
-            {
-              "id": "452efa28-2dc6-4ea3-a7a2-c35d100d0382",
-              "name": "repo.name",
-              "type": "string",
-              "value": "finance-manager"
-            },
-            {
-              "id": "81c4dc54-86bf-4432-a23f-22c7ea831e74",
-              "name": "repo.path",
-              "type": "string",
-              "value": "workflows"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "e8fddb3f-5b41-4bed-aae8-cd61d39fe284",
-      "name": "Globals1",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        576,
-        336
-      ],
-      "typeVersion": 3.4
     },
     {
       "parameters": {
@@ -613,6 +505,31 @@
     },
     {
       "parameters": {
+        "operation": "delete",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "requestOptions": {}
+      },
+      "id": "c48006fb-b921-40a4-a950-867be9276285",
+      "name": "Delete workflow",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        1024,
+        592
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
         "operation": "update",
         "workflowId": {
           "__rl": true,
@@ -623,7 +540,7 @@
         "requestOptions": {}
       },
       "id": "0d696a58-b00d-4af4-9f59-abb6433115de",
-      "name": "Update credential",
+      "name": "Update workflow",
       "type": "n8n-nodes-base.n8n",
       "position": [
         1024,
@@ -636,6 +553,89 @@
           "name": "n8n"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "workflowObject": "={{ $json }}",
+        "requestOptions": {}
+      },
+      "id": "a26d0dea-1e2f-4636-b399-875f03525135",
+      "name": "Create workflow",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        1024,
+        1168
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "xzK70YDN3zq9WWf1",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6cf546c5-5737-4dbd-851b-17d68e0a3780",
+              "name": "repo.owner",
+              "type": "string",
+              "value": "akosarch"
+            },
+            {
+              "id": "452efa28-2dc6-4ea3-a7a2-c35d100d0382",
+              "name": "repo.name",
+              "type": "string",
+              "value": "finance-manager"
+            },
+            {
+              "id": "81c4dc54-86bf-4432-a23f-22c7ea831e74",
+              "name": "repo.path",
+              "type": "string",
+              "value": "workflows"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e8fddb3f-5b41-4bed-aae8-cd61d39fe284",
+      "name": "Globals",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        576,
+        336
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1696,
+        240
+      ],
+      "id": "8dbb1d6b-d9bb-41cc-a6aa-ab2b0e3ca942",
+      "name": "Execute Workflow",
+      "executeOnce": false
     }
   ],
   "settings": {
@@ -653,6 +653,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-06T13:57:54.583Z",
-  "versionId": "52c215d2-35e1-4d79-8ab2-1e5cb86fcf92"
+  "updatedAt": "2025-09-06T14:14:28.868Z",
+  "versionId": "d5882d74-403d-445a-abc7-383d874349d6"
 }
