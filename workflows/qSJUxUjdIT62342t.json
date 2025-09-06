@@ -135,7 +135,7 @@
       "main": [
         [
           {
-            "node": "Execute Workflow1",
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
@@ -335,33 +335,6 @@
       ],
       "id": "82436338-9e89-4ac2-a9cc-997f24302034",
       "name": "Compare Datasets"
-    },
-    {
-      "parameters": {
-        "workflowId": {
-          "__rl": true,
-          "value": "={{ $workflow.id }}",
-          "mode": "id"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": true
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1.2,
-      "position": [
-        1152,
-        -272
-      ],
-      "id": "42007ee7-0840-4217-b5fa-0d5afedf8d48",
-      "name": "Execute Workflow1",
-      "executeOnce": false
     },
     {
       "parameters": {
@@ -659,6 +632,33 @@
       ],
       "id": "1bdac12d-8eef-44a0-8d73-c31634fc795a",
       "name": "Get file content"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1152,
+        -272
+      ],
+      "id": "42007ee7-0840-4217-b5fa-0d5afedf8d48",
+      "name": "Execute Workflow",
+      "executeOnce": false
     }
   ],
   "settings": {
@@ -676,6 +676,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-06T12:03:38.311Z",
-  "versionId": "f20ecf49-ad35-43f2-b19d-913c9faea591"
+  "updatedAt": "2025-09-06T14:14:07.781Z",
+  "versionId": "186adedd-d5ad-4193-9536-18baad090c10"
 }
