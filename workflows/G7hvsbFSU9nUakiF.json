@@ -360,7 +360,7 @@
       "name": "Update Notion",
       "credentials": {
         "notionApi": {
-          "id": "AsGtyqU0ytLCHIWo",
+          "id": "d9JekbtN93vwk6qU",
           "name": "Notion"
         }
       }
@@ -495,6 +495,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-06T13:48:47.478Z",
-  "versionId": "c86296e2-5c94-4866-ba02-e4a3e9863a2d"
+  "updatedAt": "2025-09-07T08:52:22.830Z",
+  "versionId": "bf725821-4e45-4bea-823a-3d80ba99a24d"
 }
