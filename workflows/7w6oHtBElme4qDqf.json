@@ -195,7 +195,7 @@
       "name": "Get accounts",
       "credentials": {
         "redis": {
-          "id": "Mrfqpfn7I6IiBzeh",
+          "id": "xIeRUNfRDfJ3EWPR",
           "name": "Redis"
         }
       }
@@ -223,6 +223,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-03T18:11:17.028Z",
-  "versionId": "d55bc9d3-1c6b-4fa9-a693-c8c96735c581"
+  "updatedAt": "2025-09-07T08:40:18.046Z",
+  "versionId": "20450381-6c6e-4306-93e4-d53bde68130b"
 }
