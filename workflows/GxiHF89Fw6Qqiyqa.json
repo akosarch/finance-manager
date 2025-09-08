@@ -314,7 +314,8 @@
         1248,
         592
       ],
-      "typeVersion": 3.3
+      "typeVersion": 3.3,
+      "disabled": true
     },
     {
       "parameters": {
@@ -505,7 +506,8 @@
           "id": "xzK70YDN3zq9WWf1",
           "name": "n8n"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -515,7 +517,7 @@
           "value": "={{ $json.id }}",
           "mode": "id"
         },
-        "workflowObject": "={{ $json }}",
+        "workflowObject": "={{ \n  JSON.stringify((( { settings, ...rest } ) => rest)($json)) \n}}",
         "requestOptions": {}
       },
       "id": "0d696a58-b00d-4af4-9f59-abb6433115de",
@@ -536,7 +538,7 @@
     {
       "parameters": {
         "operation": "create",
-        "workflowObject": "={{ $json }}",
+        "workflowObject": "={{ \n  JSON.stringify((( { settings, ...rest } ) => rest)($json)) \n}}",
         "requestOptions": {}
       },
       "id": "a26d0dea-1e2f-4636-b399-875f03525135",
@@ -632,6 +634,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-08T14:55:09.463Z",
-  "versionId": "baee0832-2a79-4cde-89c7-ff9951831b4a"
+  "updatedAt": "2025-09-08T15:54:39.502Z",
+  "versionId": "d058aa74-5f53-4f4e-ae0c-d4ca663a3180"
 }
