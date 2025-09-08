@@ -356,7 +356,8 @@
           "id": "xzK70YDN3zq9WWf1",
           "name": "n8n"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -409,7 +410,8 @@
         704,
         80
       ],
-      "typeVersion": 3.3
+      "typeVersion": 3.3,
+      "disabled": true
     },
     {
       "parameters": {
@@ -655,6 +657,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-08T14:31:17.456Z",
-  "versionId": "a7b9b0d5-48d8-4202-9acd-29ee5db80691"
+  "updatedAt": "2025-09-08T15:55:35.148Z",
+  "versionId": "cc583400-e012-4e98-b551-922ea7dad48d"
 }
