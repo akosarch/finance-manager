@@ -91,7 +91,7 @@
       "main": [
         [
           {
-            "node": "Return removed",
+            "node": "Return unique (local)",
             "type": "main",
             "index": 0
           }
@@ -400,22 +400,6 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"deleted\"\n  }\n}}\n",
-        "options": {}
-      },
-      "id": "293aa13e-4666-4402-a0e1-b2d5669afeb6",
-      "name": "Return removed",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        704,
-        80
-      ],
-      "typeVersion": 3.3,
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "mode": "raw",
         "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"created\"\n  }\n}}\n",
         "options": {}
       },
@@ -640,6 +624,21 @@
       "id": "42007ee7-0840-4217-b5fa-0d5afedf8d48",
       "name": "Execute Workflow",
       "executeOnce": false
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"unique (local)\"\n  }\n}}\n",
+        "options": {}
+      },
+      "id": "293aa13e-4666-4402-a0e1-b2d5669afeb6",
+      "name": "Return unique (local)",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        704,
+        80
+      ],
+      "typeVersion": 3.3
     }
   ],
   "settings": {
@@ -657,6 +656,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-08T15:55:35.148Z",
-  "versionId": "cc583400-e012-4e98-b551-922ea7dad48d"
+  "updatedAt": "2025-09-09T07:47:34.907Z",
+  "versionId": "fd02a0e3-dee2-4404-812e-f9042ef9e9c1"
 }
