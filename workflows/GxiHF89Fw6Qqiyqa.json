@@ -269,6 +269,10 @@
             {
               "field1": "id",
               "field2": "id"
+            },
+            {
+              "field1": "name",
+              "field2": "name"
             }
           ]
         },
@@ -632,6 +636,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T08:43:20.759Z",
-  "versionId": "69225b35-66d0-4a5d-b409-d0c753cf694c"
+  "updatedAt": "2025-09-09T08:46:16.988Z",
+  "versionId": "3414f8be-e827-4a91-9d29-788f326c2aa9"
 }
