@@ -157,7 +157,7 @@
       "main": [
         [
           {
-            "node": "Return unique (local)",
+            "node": "Return deleted",
             "type": "main",
             "index": 0
           }
@@ -289,7 +289,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"skipped\"\n  }\n}}\n",
         "options": {}
       },
       "id": "c00c6b4b-6756-4291-8de4-d6ed1447c94d",
@@ -304,7 +304,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"created\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"created\"\n  }\n}}\n",
         "options": {}
       },
       "id": "61fb84b6-35dc-4c92-bc2e-2afbac22decd",
@@ -319,7 +319,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"skipped\"\n  }\n}}\n",
         "options": {}
       },
       "id": "8d77aec2-1174-4bbb-8966-132628fb9d42",
@@ -490,8 +490,7 @@
           "id": "xzK70YDN3zq9WWf1",
           "name": "n8n"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -605,11 +604,11 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"unique (local)\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"deleted (local)\"\n  }\n}}\n",
         "options": {}
       },
       "id": "f7ee67e5-675d-4952-82cb-8b80ec91b052",
-      "name": "Return unique (local)",
+      "name": "Return deleted",
       "type": "n8n-nodes-base.set",
       "position": [
         1248,
@@ -633,6 +632,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T07:46:43.997Z",
-  "versionId": "011b6389-8eb6-44c4-a7ed-21ae8b443bda"
+  "updatedAt": "2025-09-09T08:37:26.229Z",
+  "versionId": "a054737b-75b0-44d8-ae15-efd74e37bf77"
 }
