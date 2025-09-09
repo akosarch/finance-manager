@@ -91,7 +91,7 @@
       "main": [
         [
           {
-            "node": "Return unique (local)",
+            "node": "Return deleted",
             "type": "main",
             "index": 0
           }
@@ -356,8 +356,7 @@
           "id": "xzK70YDN3zq9WWf1",
           "name": "n8n"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -385,7 +384,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"skipped\"\n  }\n}}\n",
         "options": {}
       },
       "id": "89bc9485-83f3-4ad6-8ae3-7582848bfe6e",
@@ -400,7 +399,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"created\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"created\"\n  }\n}}\n",
         "options": {}
       },
       "id": "61a99e5d-14ea-4cdb-b382-c795d7d09eb3",
@@ -460,7 +459,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"skipped\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"skipped\"\n  }\n}}\n",
         "options": {}
       },
       "id": "21f59542-e36f-4053-baac-5cad74e3f7f9",
@@ -628,11 +627,11 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"result\": \"unique (local)\"\n  }\n}}\n",
+        "jsonOutput": "={{\n  {\n    \"credential\": $json.name,\n    \"id\": $json.id\",\n    \"result\": \"deleted (local)\"\n  }\n}}\n",
         "options": {}
       },
       "id": "293aa13e-4666-4402-a0e1-b2d5669afeb6",
-      "name": "Return unique (local)",
+      "name": "Return deleted",
       "type": "n8n-nodes-base.set",
       "position": [
         704,
@@ -656,6 +655,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T07:47:34.907Z",
-  "versionId": "fd02a0e3-dee2-4404-812e-f9042ef9e9c1"
+  "updatedAt": "2025-09-09T08:40:00.569Z",
+  "versionId": "498afe38-51aa-4dfe-bca3-ce0bb63b6de5"
 }
