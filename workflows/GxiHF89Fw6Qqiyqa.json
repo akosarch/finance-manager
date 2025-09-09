@@ -157,7 +157,7 @@
       "main": [
         [
           {
-            "node": "Return removed",
+            "node": "Return unique (local)",
             "type": "main",
             "index": 0
           }
@@ -300,22 +300,6 @@
         784
       ],
       "typeVersion": 3.3
-    },
-    {
-      "parameters": {
-        "mode": "raw",
-        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"deleted\"\n  }\n}}\n",
-        "options": {}
-      },
-      "id": "f7ee67e5-675d-4952-82cb-8b80ec91b052",
-      "name": "Return removed",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        1248,
-        592
-      ],
-      "typeVersion": 3.3,
-      "disabled": true
     },
     {
       "parameters": {
@@ -617,6 +601,21 @@
       "id": "8dbb1d6b-d9bb-41cc-a6aa-ab2b0e3ca942",
       "name": "Execute Workflow",
       "executeOnce": false
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"workflow\": $json.name,\n    \"result\": \"unique (local)\"\n  }\n}}\n",
+        "options": {}
+      },
+      "id": "f7ee67e5-675d-4952-82cb-8b80ec91b052",
+      "name": "Return unique (local)",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1248,
+        592
+      ],
+      "typeVersion": 3.3
     }
   ],
   "settings": {
@@ -634,6 +633,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-08T15:54:39.502Z",
-  "versionId": "d058aa74-5f53-4f4e-ae0c-d4ca663a3180"
+  "updatedAt": "2025-09-09T07:46:43.997Z",
+  "versionId": "011b6389-8eb6-44c4-a7ed-21ae8b443bda"
 }
