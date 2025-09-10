@@ -48,7 +48,7 @@
       "main": [
         [
           {
-            "node": "Delete credential",
+            "node": "Filter",
             "type": "main",
             "index": 0
           }
@@ -207,6 +207,17 @@
           }
         ]
       ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Delete credential",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-03T21:49:57.739Z",
@@ -347,7 +358,7 @@
       "name": "Delete credential",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        480,
+        912,
         80
       ],
       "typeVersion": 1,
@@ -356,8 +367,7 @@
           "id": "xzK70YDN3zq9WWf1",
           "name": "n8n"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -371,7 +381,7 @@
       "name": "Create credential",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        480,
+        688,
         656
       ],
       "typeVersion": 1,
@@ -392,7 +402,7 @@
       "name": "Return skipped",
       "type": "n8n-nodes-base.set",
       "position": [
-        480,
+        688,
         272
       ],
       "typeVersion": 3.3
@@ -407,7 +417,7 @@
       "name": "Return added",
       "type": "n8n-nodes-base.set",
       "position": [
-        704,
+        912,
         656
       ],
       "typeVersion": 3.3
@@ -424,7 +434,7 @@
       "name": "Create credential1",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        704,
+        912,
         464
       ],
       "typeVersion": 1,
@@ -446,7 +456,7 @@
       "name": "Delete credential2",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        480,
+        688,
         464
       ],
       "typeVersion": 1,
@@ -467,7 +477,7 @@
       "name": "Return updated",
       "type": "n8n-nodes-base.set",
       "position": [
-        928,
+        1136,
         464
       ],
       "typeVersion": 3.3
@@ -635,10 +645,52 @@
       "name": "Return deleted",
       "type": "n8n-nodes-base.set",
       "position": [
-        704,
+        1136,
         80
       ],
       "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "15c96ad6-86de-439b-98b7-246143ec02f9",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "n8nApi",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "b0d4d16e-cc53-48d7-a429-8356ca7dde91",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "githubApi",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        80
+      ],
+      "id": "e09b3786-2faf-434f-83ed-0c0bf87180d7",
+      "name": "Filter"
     }
   ],
   "settings": {
@@ -656,6 +708,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T13:56:17.077Z",
-  "versionId": "073baf6d-21fd-40c8-9d20-98191f96ea3a"
+  "updatedAt": "2025-09-10T10:11:13.898Z",
+  "versionId": "62ca5855-188a-424e-8c01-a0b6cde82051"
 }
