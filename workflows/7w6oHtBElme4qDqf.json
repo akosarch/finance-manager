@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Get accounts",
+            "node": "Get categories",
             "type": "main",
             "index": 0
           }
@@ -23,7 +23,7 @@
         ],
         [
           {
-            "node": "Call Set accounts",
+            "node": "Call Set categories",
             "type": "main",
             "index": 0
           }
@@ -35,18 +35,18 @@
         []
       ]
     },
-    "Call Set accounts": {
+    "Call Set categories": {
       "main": [
         [
           {
-            "node": "Get accounts",
+            "node": "Get categories",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get accounts": {
+    "Get categories": {
       "main": [
         [
           {
@@ -173,7 +173,7 @@
         672,
         -176
       ],
-      "name": "Call Set accounts",
+      "name": "Call Set categories",
       "id": "4a73acf5-6d22-4329-98de-64ab5cbaa2d1"
     },
     {
@@ -192,7 +192,7 @@
         -272
       ],
       "id": "13213c37-aff6-491d-a29e-0ec964ce7791",
-      "name": "Get accounts",
+      "name": "Get categories",
       "credentials": {
         "redis": {
           "id": "xIeRUNfRDfJ3EWPR",
@@ -223,6 +223,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-07T08:40:18.046Z",
-  "versionId": "20450381-6c6e-4306-93e4-d53bde68130b"
+  "updatedAt": "2025-09-10T14:18:55.137Z",
+  "versionId": "b5753727-862e-41b3-b0ad-48ad20edfa89"
 }
