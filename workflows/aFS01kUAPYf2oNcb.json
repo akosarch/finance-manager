@@ -1,32 +1,11 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request": {
-      "main": [
-        [
-          {
-            "node": "Filter UAH",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Filter EUR",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Set USD",
+            "node": "Get currency rates",
             "type": "main",
             "index": 0
           }
@@ -37,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Create a database page",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -70,7 +49,7 @@
       "main": [
         [
           {
-            "node": "Create a database page",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -81,7 +60,39 @@
       "main": [
         [
           {
-            "node": "Create a database page",
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get currency rates": {
+      "main": [
+        [
+          {
+            "node": "Filter UAH",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter EUR",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Set USD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Update Notion",
             "type": "main",
             "index": 0
           }
@@ -91,7 +102,7 @@
   },
   "createdAt": "2025-08-04T09:31:02.940Z",
   "id": "aFS01kUAPYf2oNcb",
-  "isArchived": false,
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -111,79 +122,10 @@
       "typeVersion": 1.2,
       "position": [
         -480,
-        176
+        192
       ],
       "id": "c9e9482e-f1de-4f64-8efb-7a4c62597628",
       "name": "Schedule Trigger"
-    },
-    {
-      "parameters": {
-        "url": "https://api.monobank.ua/bank/currency",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -240,
-        176
-      ],
-      "id": "1a3172e6-7f2d-4ce3-80d3-8cb54402953b",
-      "name": "HTTP Request"
-    },
-    {
-      "parameters": {
-        "resource": "databasePage",
-        "databaseId": {
-          "__rl": true,
-          "value": "={{$env.NOTION_RATES_DB_ID}}",
-          "mode": "id"
-        },
-        "title": "={{ $json.code }}",
-        "propertiesUi": {
-          "propertyValues": [
-            {
-              "key": "Date|date",
-              "includeTime": false,
-              "date": "={{ $today }}"
-            },
-            {
-              "key": "Buy|number",
-              "numberValue": "={{ $json.buy }}"
-            },
-            {
-              "key": "Sell|number",
-              "numberValue": "={{ $json.sell }}"
-            },
-            {
-              "key": "Code|title",
-              "title": "={{ $json.code }}"
-            },
-            {
-              "key": "Currency|relation",
-              "relationValue": [
-                "={{ $json.relation }}"
-              ]
-            }
-          ]
-        },
-        "options": {
-          "icon": "={{ $json.icon }}"
-        }
-      },
-      "type": "n8n-nodes-base.notion",
-      "typeVersion": 2.2,
-      "position": [
-        544,
-        176
-      ],
-      "id": "c938f780-1d87-4c1d-93cb-2d392c0b0a57",
-      "name": "Create a database page",
-      "credentials": {
-        "notionApi": {
-          "id": "d9JekbtN93vwk6qU",
-          "name": "Notion"
-        }
-      }
     },
     {
       "parameters": {
@@ -196,7 +138,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        272,
+        192,
         0
       ],
       "id": "ea10b80b-2029-4d3c-84ad-f68fd85fb659",
@@ -215,8 +157,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        272,
-        336
+        192,
+        384
       ],
       "id": "4a5fbc0a-f5e6-40f3-8281-039164a92dcb",
       "name": "Set EUR",
@@ -259,7 +201,7 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        0,
+        -32,
         0
       ],
       "id": "1a5488bb-7c7e-461d-8684-18b535827f76",
@@ -302,8 +244,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        0,
-        336
+        -32,
+        384
       ],
       "id": "74a1e460-5037-42d4-81fe-6210166665bc",
       "name": "Filter EUR",
@@ -320,13 +262,83 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        272,
-        176
+        192,
+        192
       ],
       "id": "a35f81d5-7b09-4ebe-be16-58994abb8275",
       "name": "Set USD",
       "alwaysOutputData": true,
       "executeOnce": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n  $json\n}}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        640,
+        192
+      ],
+      "id": "cd87f0fe-e7be-4a29-b3b6-f3d570f1b4a6",
+      "name": "Update Notion",
+      "credentials": {
+        "notionApi": {
+          "id": "d9JekbtN93vwk6qU",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.monobank.ua/bank/currency",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -256,
+        192
+      ],
+      "id": "1a3172e6-7f2d-4ce3-80d3-8cb54402953b",
+      "name": "Get currency rates"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"parent\": { \n      \"database_id\": $env.NOTION_RATES_DB_ID \n    },\n    \"icon\": {\n      \"type\": \"emoji\",\n      \"emoji\": $json?.icon\n    },\n    \"properties\": {\n      \"Code\": {\n        \"title\": [{\n          \"type\": \"text\",\n          \"text\": { \"content\": $json?.code }\n        }]\n    },\n      \"Date\": {\n        \"date\": {\n          \"start\": $('Get currency rates').item.json?.date.toDateTime('s')\n        }\n      },\n      \"Buy\": {\n        \"number\": $json?.buy\n      },\n      \"Sell\": {\n        \"number\": $json?.sell\n      },\n      \"Currency\": {\n        \"relation\": $json.relation ?\n          [{\"id\": $json.relation}] :\n          []\n      }\n    }\n  }\n}}",
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        192
+      ],
+      "id": "4bc0de70-1f43-4744-8237-3f336ded7918",
+      "name": "Edit Fields"
     }
   ],
   "settings": {
@@ -356,6 +368,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-07T10:41:52.108Z",
-  "versionId": "6d7e7a4f-2654-418e-811e-7a2ee39164d7"
+  "updatedAt": "2025-09-13T10:44:42.493Z",
+  "versionId": "1e7beab2-90dc-4a6b-91a5-6334a0df130a"
 }
