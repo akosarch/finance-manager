@@ -72,11 +72,7 @@
             }
           ]
         },
-        "options": {
-          "redirect": {
-            "redirect": {}
-          }
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
@@ -89,7 +85,7 @@
       "executeOnce": true,
       "credentials": {
         "notionApi": {
-          "id": "AsGtyqU0ytLCHIWo",
+          "id": "d9JekbtN93vwk6qU",
           "name": "Notion"
         }
       }
@@ -127,7 +123,7 @@
       "executeOnce": false,
       "credentials": {
         "redis": {
-          "id": "Mrfqpfn7I6IiBzeh",
+          "id": "xIeRUNfRDfJ3EWPR",
           "name": "Redis"
         }
       }
@@ -147,7 +143,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const results = $input.first().json.results;\n\nconst mappedCurrencies = results.map(cur => \n  (  {\n    \"notionId\": cur.id,\n    \"currencyCode\": cur.properties.Code.title[0].plain_text,\n    \"currencyNumber\": cur.properties.Number.number,\n    \"icon\": cur.icon.emoji\n  })\n);\n\nreturn mappedCurrencies;"
+        "jsCode": "const results = $input.first().json.results;\n\nconst mappedCurrencies = results.map(cur => \n  (  {\n    \"notionId\": cur.id,\n    \"currencyCode\": cur.properties.Code.title[0].plain_text,\n    \"currencyNumber\": cur.properties.Number.number,\n    \"icon\": cur.icon.emoji,\n    \"isPrimary\": cur.properties.Primary.checkbox\n  })\n);\n\nreturn mappedCurrencies;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -181,6 +177,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-03T18:11:39.195Z",
-  "versionId": "d16cf3e4-49ed-4a41-a5f8-dac226e9976a"
+  "updatedAt": "2025-09-12T08:09:32.709Z",
+  "versionId": "cf681edd-fb3d-46c7-ad3a-df1a078609c1"
 }
