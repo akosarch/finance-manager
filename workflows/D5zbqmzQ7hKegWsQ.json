@@ -163,7 +163,7 @@
       "name": "Get currencies",
       "credentials": {
         "redis": {
-          "id": "Mrfqpfn7I6IiBzeh",
+          "id": "xIeRUNfRDfJ3EWPR",
           "name": "Redis"
         }
       }
@@ -218,6 +218,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-03T18:11:57.149Z",
-  "versionId": "2bb10ce2-a544-40b8-8c60-512351c0fa9c"
+  "updatedAt": "2025-09-12T11:11:25.424Z",
+  "versionId": "be8e40e4-8fde-452b-81ea-230587faebdd"
 }
