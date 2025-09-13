@@ -652,7 +652,8 @@
     }
   ],
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v0",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "shared": [
     {
@@ -666,6 +667,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-04T13:10:45.852Z",
-  "versionId": "b3521b1b-25c2-448a-b849-b2c4d0fc720c"
+  "updatedAt": "2025-09-13T10:52:22.877Z",
+  "versionId": "ff248129-a281-4251-9a8b-ff88b1cffb0f"
 }
