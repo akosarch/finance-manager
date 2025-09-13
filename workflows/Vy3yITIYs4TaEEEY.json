@@ -127,7 +127,7 @@
       "executeOnce": false,
       "credentials": {
         "notionApi": {
-          "id": "AsGtyqU0ytLCHIWo",
+          "id": "d9JekbtN93vwk6qU",
           "name": "Notion"
         }
       }
@@ -191,7 +191,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const results = $input.first().json.results;\n\nconst mappedAccounts = results.map(acc => \n  ({\n    \"notionId\": acc.id,\n    \"name\": acc.properties.Name.title[0].plain_text,\n    \"currencyId\": acc.properties.Currency.relation[0].id,\n    \"iban\": acc.properties.IBAN.rich_text[0]?.plain_text\n  })\n);\n\nreturn mappedAccounts;\n"
+        "jsCode": "const results = $input.first().json.results;\n\nconst mappedAccounts = results.map(a => \n  ({\n    \"notionId\": a.id,\n    \"name\": a.properties.Name.title[0].plain_text,\n    \"currencyId\": a.properties.Currency.relation[0].id,\n    \"iban\": a.properties.IBAN.rich_text[0]?.plain_text\n  })\n);\n\nreturn mappedAccounts;\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -204,7 +204,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const results = $input.first().json.accounts;\n\nconst mappedAccounts = results.map(acc => \n  ({\n    \"bankId\": acc.id,\n    \"iban\": acc.iban\n  })\n);\n\nreturn mappedAccounts;\n"
+        "jsCode": "const results = $input.first().json.accounts;\n\nconst mappedAccounts = results.map(a => \n  ({\n    \"bankId\": a.id,\n    \"iban\": a.iban\n  })\n);\n\nreturn mappedAccounts;\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -248,14 +248,15 @@
       "executeOnce": false,
       "credentials": {
         "redis": {
-          "id": "Mrfqpfn7I6IiBzeh",
+          "id": "xIeRUNfRDfJ3EWPR",
           "name": "Redis"
         }
       }
     }
   ],
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v0",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "shared": [
     {
@@ -276,6 +277,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-03T18:12:08.063Z",
-  "versionId": "61040ab6-83b7-41e8-b096-ee7936ddab55"
+  "updatedAt": "2025-09-12T14:05:27.484Z",
+  "versionId": "7f2388c7-9e2f-4046-bca5-a40fd0123abf"
 }
