@@ -1,0 +1,297 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get currency rates",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call Get currencies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get currency rates": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Update Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Get currencies": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-10T21:01:38.416Z",
+  "id": "V1sRsHBQg4RPW6io",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Set currency rates",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 12
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -480,
+        128
+      ],
+      "id": "ed12e8d4-9afd-4d90-bde8-337c2ffaeba3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n  $json\n}}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        640,
+        128
+      ],
+      "id": "591e25dc-655d-4565-b2b4-817f1fc7d077",
+      "name": "Update Notion",
+      "credentials": {
+        "notionApi": {
+          "id": "d9JekbtN93vwk6qU",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.monobank.ua/bank/currency",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -256,
+        32
+      ],
+      "id": "9ab0b878-5d63-4415-8519-faa2ce5ac2d6",
+      "name": "Get currency rates"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n  {\n    \"parent\": { \n      \"database_id\": $env.NOTION_RATES_DB_ID \n    },\n    \"icon\": {\n      \"type\": \"emoji\",\n      \"emoji\": $json?.icon\n    },\n    \"properties\": {\n      \"Code\": {\n        \"title\": [{\n          \"type\": \"text\",\n          \"text\": { \"content\": $json?.currencyCode }\n        }]\n    },\n      \"Date\": {\n        \"date\": {\n          \"start\": $now.toDateTime('s')\n        }\n      },\n      \"Buy\": {\n        \"number\": $json?.rateBuy\n      },\n      \"Sell\": {\n        \"number\": $json?.rateSell\n      },\n      \"Currency\": {\n        \"relation\": $json.notionId ?\n          [{\"id\": $json.notionId}] :\n          []\n      }\n    }\n  }\n}}",
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        128
+      ],
+      "id": "2062f6c0-89fc-49d7-9c7d-094c78daf47b",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "D5zbqmzQ7hKegWsQ",
+          "mode": "list",
+          "cachedResultName": "Get currencies"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [
+            "currencyCode"
+          ],
+          "schema": [
+            {
+              "id": "currencyCode",
+              "displayName": "currencyCode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number",
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -256,
+        224
+      ],
+      "name": "Call Get currencies",
+      "id": "525568e7-5871-4cec-aa9e-9164bace8f22"
+    },
+    {
+      "parameters": {
+        "mode": "combineBySql",
+        "query": "SELECT\n  c.icon, \n  c.currencyCode,\n  c.currencyNumber,\n  c.isPrimary, \n  c.notionId,\n\n  -- currency per 1 primary\n  CASE WHEN c.isPrimary = 1 THEN 1 ELSE COALESCE(r_pf.buy, 1.0 / r_fp.buy) END AS rateBuy,\n  CASE WHEN c.isPrimary = 1 THEN 1 ELSE COALESCE(r_pf.sell, 1.0 / r_fp.sell) END AS rateSell\n\nFROM input2 AS c\nCROSS JOIN (\n  SELECT MAX(CASE WHEN isPrimary = 1 THEN currencyNumber END) AS primary_num\n  FROM input2\n) AS p\nLEFT JOIN input1 AS r_pf\n  ON r_pf.currencyNumberA = p.primary_num\n AND r_pf.currencyNumberB = c.currencyNumber\nLEFT JOIN input1 AS r_fp\n  ON r_fp.currencyNumberA = c.currencyNumber\n AND r_fp.currencyNumberB = p.primary_num\nORDER BY c.isPrimary DESC, c.currencyCode;",
+        "options": {
+          "emptyQueryResult": "empty"
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        192,
+        128
+      ],
+      "id": "d760a582-1047-45f6-ad66-cce3135ac00b",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.all()\nconst rates = input.filter(r => (\n  r.json.rateBuy && \n  r.json.rateSell\n)).map(r => (\n  {\n    \"currencyNumberA\": r.json.currencyCodeA,\n    \"currencyNumberB\": r.json.currencyCodeB,\n    \"buy\": r.json.rateBuy,\n    \"sell\": r.json.rateSell\n  }\n))\nreturn rates"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        32
+      ],
+      "id": "08174f49-1ea7-42e9-91f4-1ec69eeb6cca",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.all()\nconst currencies = input.map(c => (\n  {\n    \"notionId\": c.json.notionId,\n    \"currencyCode\": c.json.currencyCode,\n    \"currencyNumber\": c.json.currencyNumber,\n    \"icon\": c.json.icon,\n    \"isPrimary\": c.json.isPrimary ? 1 : 0\n\n  }\n))\nreturn currencies"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        224
+      ],
+      "id": "38251ea3-d81b-486a-882b-8c348d1fc5a2",
+      "name": "Code1"
+    }
+  ],
+  "settings": {
+    "executionOrder": "v0",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-10T21:01:38.416Z",
+      "updatedAt": "2025-09-10T21:01:38.416Z",
+      "role": "workflow:owner",
+      "workflowId": "V1sRsHBQg4RPW6io",
+      "projectId": "BFkLzpzN26OoI8IT"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-09-03T18:10:21.479Z",
+      "updatedAt": "2025-09-03T18:10:21.479Z",
+      "id": "hyYDR00qVEuE8c9t",
+      "name": "finance-manager"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-13T10:45:08.325Z",
+  "versionId": "de23aaca-406c-463b-87c5-1cb690d6e3ae"
+}
